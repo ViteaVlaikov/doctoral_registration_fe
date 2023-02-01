@@ -6,6 +6,7 @@ import { PublicClientApplication, EventType } from "@azure/msal-browser";
 import { msalConfig } from "./authConfig.js";
 import App from "./App";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/index.css";
 
 /**

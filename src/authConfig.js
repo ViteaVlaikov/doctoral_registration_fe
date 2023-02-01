@@ -15,7 +15,7 @@ export const msalConfig = {
         clientId: "3290a8de-07b9-47b3-b0f3-1cab68ee6e8d", // This is the ONLY mandatory field that you need to supply.
         authority: "https://login.microsoftonline.com/792c38e4-acd6-467c-99ca-014e27a0dc15", // Defaults to "https://login.microsoftonline.com/common"
         redirectUri: "http://localhost:3000/", // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
-        postLogoutRedirectUri: "https://localhost:8080/logout", // Indicates the page to navigate after logout.
+        postLogoutRedirectUri: "https://localhost:8080/logout/", // Indicates the page to navigate after logout.
         clientCapabilities: ["CP1"] // this lets the resource owner know that this client is capable of handling claims challenge.
     },
     cache: {
@@ -56,16 +56,12 @@ export const msalConfig = {
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/resources-and-scopes.md
  */
 export const protectedResources = {
-    // apiTodoList: {
-    //     endpoint: "http://localhost:8080/api/specialities",
-    //     scopes: {
-    //         read: [ "api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read" ]
-    //     }
-    // },
-    specialities: {
+    apiTodoList: {
+        //endpoint: "http://localhost:5000/api/todolist",
         endpoint: "http://localhost:8080/api/specialities",
         scopes: {
-            read: [ "api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read" ]
+            read: [ "api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read" ],
+            //write: [ "api://Enter_the_Web_Api_Application_Id_Here/Todolist.ReadWrite" ]
         }
     }
 }
@@ -77,5 +73,5 @@ export const protectedResources = {
  * https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
 export const loginRequest = {
-    scopes: [...protectedResources.specialities.scopes.read]
+    scopes: [...protectedResources.apiTodoList.scopes.read]
 };

@@ -8,14 +8,14 @@ import useFetchWithMsal from '../hooks/useFetchWithMsal';
 
 const TodoListContent = () => {
     const { error, execute } = useFetchWithMsal({
-        scopes: protectedResources.specialities.scopes.read,
+        scopes: protectedResources.apiTodoList.scopes.read,
     });
 
     const [todoListData, setTodoListData] = useState(null);
 
     useEffect(() => {
         if (!todoListData) {
-            execute("GET", protectedResources.specialities.endpoint).then((response) => {
+            execute("GET", protectedResources.apiTodoList.endpoint).then((response) => {
                 setTodoListData(response);
             });
         }

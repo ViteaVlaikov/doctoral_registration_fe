@@ -3,7 +3,7 @@ import {
     useCallback,
 } from 'react';
 
-import { InteractionType} from '@azure/msal-browser';
+import { InteractionType, PopupRequest } from '@azure/msal-browser';
 import { useMsal, useMsalAuthentication } from "@azure/msal-react";
 
 /**
@@ -41,10 +41,8 @@ const useFetchWithMsal = (msalRequest) => {
                 let response = null;
 
                 const headers = new Headers();
-                const bearer = `Bearer ${result.accessToken}`;
-                // console.log(bearer);
+                const bearer = `Bearer ${result.accessToken}`;            
                 headers.append("Authorization", bearer);
-                //headers.append("Access-Control-Allow-Origin", "https://http://localhost:8080/api/specialities")
 
                 if (data) headers.append('Content-Type', 'application/json');
 
