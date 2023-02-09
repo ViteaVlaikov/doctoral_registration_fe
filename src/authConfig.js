@@ -3,7 +3,7 @@
  * Licensed under the MIT License.
  */
 
-import { LogLevel } from "@azure/msal-browser";
+import {LogLevel} from "@azure/msal-browser";
 
 /**
  * Configuration object to be passed to MSAL instance on creation.
@@ -56,14 +56,36 @@ export const msalConfig = {
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/resources-and-scopes.md
  */
 export const protectedResources = {
-    apiTodoList: {
-        //endpoint: "http://localhost:5000/api/todolist",
+    specialities: {
         endpoint: "http://localhost:8080/api/specialities",
         scopes: {
-            read: [ "api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read" ],
-            //write: [ "api://Enter_the_Web_Api_Application_Id_Here/Todolist.ReadWrite" ]
+            read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
+        },
+    },
+    supervisors: {
+        endpoint: "http://localhost:8080/api/supervisors",
+        scopes: {
+            read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
         }
-    }
+    },
+    science: {
+        endpoint: "http://localhost:8080/api/science",
+        scopes: {
+            read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
+        }
+    },
+    students: {
+        endpoint: "http://localhost:8080/api/students",
+        scopes: {
+            read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
+        }
+    },
+    count_of_students: {
+        endpoint: "http://localhost:8080/api/sciences_by_years",
+        scopes: {
+            read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
+        }
+    },
 }
 
 /**
@@ -73,5 +95,8 @@ export const protectedResources = {
  * https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
 export const loginRequest = {
-    scopes: [...protectedResources.apiTodoList.scopes.read]
+    scopes: [...protectedResources.specialities.scopes.read,
+        ...protectedResources.supervisors.scopes.read,
+        ...protectedResources.science.scopes.read,
+        ...protectedResources.students.scopes.read,]
 };

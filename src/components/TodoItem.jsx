@@ -27,40 +27,40 @@ export const TodoItem = (props) => {
         setNewName(e.target.value);
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //
+    //     if (!newName.trim()) {
+    //         return;
+    //     }
+    //
+    //     props.editTask(props.id, newName);
+    //     setNewName('');
+    //     setEditing(false);
+    // }
 
-        if (!newName.trim()) {
-            return;
-        }
-
-        props.editTask(props.id, newName);
-        setNewName('');
-        setEditing(false);
-    }
-
-    const editingTemplate = (
-        <div className="todo-edit">
-        <Form onSubmit={handleSubmit}>
-            <Form.Group>
-                <Form.Label htmlFor={props.id}>New name for {props.name}</Form.Label>
-                <Form.Control
-                    id={props.id}
-                    type="text"
-                    value={newName}
-                    onChange={handleChange}
-                    ref={editFieldRef}
-                />
-            </Form.Group>
-            <div className="btn-group">
-                <ButtonGroup>
-                    <Button variant="warning" type="button" onClick={() => setEditing(false)}>Cancel</Button>
-                    <Button variant="success" type="submit">Save</Button>
-                </ButtonGroup>
-            </div>
-        </Form>
-        </div>
-    );
+    // const editingTemplate = (
+    //     <div className="todo-edit">
+    //     <Form onSubmit={handleSubmit}>
+    //         <Form.Group>
+    //             <Form.Label htmlFor={props.id}>New name for {props.name}</Form.Label>
+    //             <Form.Control
+    //                 id={props.id}
+    //                 type="text"
+    //                 value={newName}
+    //                 onChange={handleChange}
+    //                 ref={editFieldRef}
+    //             />
+    //         </Form.Group>
+    //         <div className="btn-group">
+    //             <ButtonGroup>
+    //                 <Button variant="warning" type="button" onClick={() => setEditing(false)}>Cancel</Button>
+    //                 <Button variant="success" type="submit">Save</Button>
+    //             </ButtonGroup>
+    //         </div>
+    //     </Form>
+    //     </div>
+    // );
 
     const viewTemplate = (
         <div className="todo-view">

@@ -6,11 +6,18 @@ import { Home } from "./pages/Home";
 import { TodoList } from "./pages/TodoList";
 
 import "./styles/App.css";
+import {Speciality} from "./pages/Speciality";
+import {Science} from "./pages/Science";
+import {Student} from "./pages/Student";
 
 const Pages = () => {
     return (
         <Routes>
             <Route path="/todolist" element={<TodoList />} />
+            <Route path="/specialities" element={<Speciality />} />
+            <Route path="/supervisors" element={<TodoList />} />
+            <Route path="/science" element={<Science />} />
+            <Route path="/students" element={<Student />} />
             <Route path="/" element={<Home />} />
         </Routes>
     );

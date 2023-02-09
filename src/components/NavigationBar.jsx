@@ -20,18 +20,18 @@ export const NavigationBar = () => {
             .catch((error) => console.log(error));
     };
 
-    const handleLoginPopup = () => {
-        /**
-         * When using popup and silent APIs, we recommend setting the redirectUri to a blank page or a page 
-         * that does not implement MSAL. Keep in mind that all redirect routes must be registered with the application
-         * For more information, please follow this link: https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/login-user.md#redirecturi-considerations 
-         */
-
-        instance.loginPopup({
-            ...loginRequest,
-            redirectUri: '/redirect.html'
-        }).catch((error) => console.log(error));
-    };
+    // const handleLoginPopup = () => {
+    //     /**
+    //      * When using popup and silent APIs, we recommend setting the redirectUri to a blank page or a page
+    //      * that does not implement MSAL. Keep in mind that all redirect routes must be registered with the application
+    //      * For more information, please follow this link: https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/login-user.md#redirecturi-considerations
+    //      */
+    //
+    //     instance.loginPopup({
+    //         ...loginRequest,
+    //         redirectUri: '/redirect.html'
+    //     }).catch((error) => console.log(error));
+    // };
 
     const handleLogoutRedirect = () => {
         instance.logoutRedirect({
@@ -39,12 +39,12 @@ export const NavigationBar = () => {
         });
     };
 
-    const handleLogoutPopup = () => {
-        instance.logoutPopup({
-            mainWindowRedirectUri: '/', // redirects the top level app after logout
-            account: instance.getActiveAccount(),
-        });
-    };
+    // const handleLogoutPopup = () => {
+    //     instance.logoutPopup({
+    //         mainWindowRedirectUri: '/', // redirects the top level app after logout
+    //         account: instance.getActiveAccount(),
+    //     });
+    // };
 
     const handleSwitchAccount = () => {
         setShowProfilePicker(!showProfilePicker);
@@ -59,11 +59,23 @@ export const NavigationBar = () => {
         <>
             <Navbar bg="primary" variant="dark" className="navbarStyle">
                 <a className="navbar-brand" href="/">
-                    Microsoft identity platform
+                    USM
                 </a>
                 <AuthenticatedTemplate>
                     <Nav.Link className="navbarButton" href="/todolist">
-                        Todolist
+                        ToDoList
+                    </Nav.Link>
+                    <Nav.Link className="navbarButton" href="/specialities">
+                        Specialities
+                    </Nav.Link>
+                    <Nav.Link className="navbarButton" href="/supervisors">
+                        Supervisors
+                    </Nav.Link>
+                    <Nav.Link className="navbarButton" href="/science">
+                        Science
+                    </Nav.Link>
+                    <Nav.Link className="navbarButton" href="/students">
+                        Students
                     </Nav.Link>
                     <div className="collapse navbar-collapse justify-content-end">
                         <DropdownButton
@@ -74,9 +86,9 @@ export const NavigationBar = () => {
                             <Dropdown.Item as="button" onClick={handleSwitchAccount}>
                                 Switch account
                             </Dropdown.Item>
-                            <Dropdown.Item as="button" onClick={handleLogoutPopup}>
-                                Sign out using Popup
-                            </Dropdown.Item>
+                            {/*<Dropdown.Item as="button" onClick={handleLogoutPopup}>*/}
+                            {/*    Sign out using Popup*/}
+                            {/*</Dropdown.Item>*/}
                             <Dropdown.Item as="button" onClick={handleLogoutRedirect}>
                                 Sign out using Redirect
                             </Dropdown.Item>
@@ -86,9 +98,9 @@ export const NavigationBar = () => {
                 <UnauthenticatedTemplate>
                     <div className="collapse navbar-collapse justify-content-end">
                         <DropdownButton variant="secondary" className="ml-auto" drop="start" title="Sign In">
-                            <Dropdown.Item as="button" onClick={handleLoginPopup}>
-                                Sign in using Popup
-                            </Dropdown.Item>
+                            {/*<Dropdown.Item as="button" onClick={handleLoginPopup}>*/}
+                            {/*    Sign in using Popup*/}
+                            {/*</Dropdown.Item>*/}
                             <Dropdown.Item as="button" onClick={handleLoginRedirect}>
                                 Sign in using Redirect
                             </Dropdown.Item>
