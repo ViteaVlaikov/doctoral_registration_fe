@@ -77,6 +77,9 @@ export const NavigationBar = () => {
                     <Nav.Link className="navbarButton" href="/students">
                         Students
                     </Nav.Link>
+                    <Nav.Link className="navbarButton" href="/domain">
+                        Domains
+                    </Nav.Link>
                     <div className="collapse navbar-collapse justify-content-end">
                         <DropdownButton
                             variant="warning"

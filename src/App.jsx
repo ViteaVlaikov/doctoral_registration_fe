@@ -9,15 +9,21 @@ import "./styles/App.css";
 import {Speciality} from "./pages/Speciality";
 import {Science} from "./pages/Science";
 import {Student} from "./pages/Student";
+import {Domain} from "./pages/Domain";
+import {DomainByScienceSchool} from "./pages/DomainByScienceSchool";
 
 const Pages = () => {
     return (
         <Routes>
             <Route path="/todolist" element={<TodoList />} />
             <Route path="/specialities" element={<Speciality />} />
+            <Route path="/specialities" element={<Speciality />} />
             <Route path="/supervisors" element={<TodoList />} />
             <Route path="/science" element={<Science />} />
             <Route path="/students" element={<Student />} />
+            <Route path="/domain" element={<Domain />} />
+            <Route path="/domain/:school_id/:year" element={<DomainByScienceSchool />} />
+
             <Route path="/" element={<Home />} />
         </Routes>
     );

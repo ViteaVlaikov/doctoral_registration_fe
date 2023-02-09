@@ -69,3 +69,7 @@ footer {
 .warningMessage {
     color: red;
 }
+
+.table{
+    border: black;
+}

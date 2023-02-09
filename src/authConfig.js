@@ -86,6 +86,18 @@ export const protectedResources = {
             read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
         }
     },
+    domain: {
+        endpoint: "http://localhost:8080/api/domain",
+        scopes: {
+            read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
+        }
+    },
+    domain_by_school: {
+        endpoint: "http://localhost:8080/api/domain",
+        scopes: {
+            read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
+        }
+    },
 }
 
 /**
@@ -98,5 +110,8 @@ export const loginRequest = {
     scopes: [...protectedResources.specialities.scopes.read,
         ...protectedResources.supervisors.scopes.read,
         ...protectedResources.science.scopes.read,
-        ...protectedResources.students.scopes.read,]
+        ...protectedResources.students.scopes.read,
+        ...protectedResources.domain.scopes.read,
+        ...protectedResources.domain_by_school.scopes.read,
+        ...protectedResources.count_of_students.scopes.read,]
 };

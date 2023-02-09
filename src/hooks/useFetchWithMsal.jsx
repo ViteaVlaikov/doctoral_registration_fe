@@ -43,6 +43,7 @@ const useFetchWithMsal = (msalRequest) => {
                 const headers = new Headers();
                 const bearer = `Bearer ${result.accessToken}`;            
                 headers.append("Authorization", bearer);
+                headers.append("Access-Control-Allow-Origin",'*');
 
                 if (data) headers.append('Content-Type', 'application/json');
 

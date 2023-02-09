@@ -4,43 +4,43 @@ import {InteractionType} from '@azure/msal-browser';
 import {loginRequest, protectedResources} from "../authConfig";
 import useFetchWithMsal from '../hooks/useFetchWithMsal';
 import {ScienceList} from "../components/science/ScienceList";
+import {DomainList} from "../components/science/DomainList";
+import {useParams} from "react-router-dom";
 
-
-const ScienceContext = () => {
+const DomainContext = () => {
     const { error, execute } = useFetchWithMsal({
-        scopes: protectedResources.count_of_students.scopes.read,
+        scopes: protectedResources.domain.scopes.read,
     });
 
-    const [scienceData, setScienceData] = useState(null);
-
+    const [domainData, setDomainData] = useState(null);
     useEffect(() => {
-        if (!scienceData) {
-            execute("GET", protectedResources.count_of_students.endpoint)
+        if (!domainData) {
+            execute("GET", protectedResources.domain.endpoint)
                 .then((response) => {
-                    setScienceData(response);
-                    console.log(response);
+                    setDomainData(response);
+                    console.log(response)
                 });
         }
-    }, [execute, scienceData])
+    }, [execute, domainData])
 
     if (error) {
         return <div>Error: {error.message}</div>;
     }
 
-    return <>{scienceData ? <ScienceList scienceData={scienceData} /> : null}</>;
+    return <>{domainData ? <DomainList domainData={domainData} /> : null}</>;
 }
-
-export const Science = () => {
+export const Domain = () => {
     const authRequest = {
         ...loginRequest,
     };
-
+    const param = useParams();
+    console.log(param);
     return (
         <MsalAuthenticationTemplate
             interactionType={InteractionType.Redirect}
             authenticationRequest={authRequest}
         >
-            <ScienceContext />
+            <DomainContext />
         </MsalAuthenticationTemplate>
     );
 };

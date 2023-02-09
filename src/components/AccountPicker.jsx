@@ -16,7 +16,7 @@ export const AccountPicker = (props) => {
                 ...loginRequest,
                 prompt: 'login',
             });
-        } else if (account && activeAccount.homeAccountId != account.homeAccountId) {
+        } else if (account && activeAccount.homeAccountId !== account.homeAccountId) {
             instance.setActiveAccount(account);
             try {
                 await instance.ssoSilent({
@@ -54,7 +54,7 @@ export const AccountPicker = (props) => {
                                 as="li"
                                 role="button"
                                 active={
-                                    instance.getActiveAccount().localAccountId === account.localAccountId ? true : false
+                                    instance.getActiveAccount().localAccountId === account.localAccountId
                                 }
                                 key={account.homeAccountId}
                                 onClick={() => handleListItemClick(account)}

@@ -5,7 +5,7 @@ import {SpecialityItem} from "./SpecialityItem";
 export const SpecialityList = (props) => {
 
     const [specialityList, setSpecialityList] = useState(props.specialityData);
-
+    console.log(specialityList);
     const specialities = specialityList.map(speciality => (
         <SpecialityItem
             key={Math.random()}
