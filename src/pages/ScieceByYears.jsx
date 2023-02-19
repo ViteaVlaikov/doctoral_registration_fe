@@ -8,14 +8,14 @@ import {ScienceList} from "../components/science/ScienceList";
 
 const ScienceContext = () => {
     const { error, execute } = useFetchWithMsal({
-        scopes: protectedResources.science.scopes.read,
+        scopes: protectedResources.count_of_students.scopes.read,
     });
 
     const [scienceData, setScienceData] = useState(null);
 
     useEffect(() => {
         if (!scienceData) {
-            execute("GET", protectedResources.science.endpoint)
+            execute("GET", protectedResources.count_of_students.endpoint)
                 .then((response) => {
                     setScienceData(response);
                     console.log(response);
@@ -30,7 +30,7 @@ const ScienceContext = () => {
     return <>{scienceData ? <ScienceList scienceData={scienceData} /> : null}</>;
 }
 
-export const Science = () => {
+export const ScienceByYears = () => {
     const authRequest = {
         ...loginRequest,
     };

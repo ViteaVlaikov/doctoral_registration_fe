@@ -4,6 +4,7 @@ import {Science} from "./Science";
 import useFetchWithMsal from "../hooks/useFetchWithMsal";
 import {protectedResources} from "../authConfig";
 import {useEffect, useState} from "react";
+import {ScienceByYears} from "./ScieceByYears";
 
 /***
  * Component to detail ID token claims with a description for each claim. For more details on ID token claims, please check the following links:
@@ -23,6 +24,7 @@ export const Home = () => {
                             <div>
                                 Welcome {activeAccount.name}
                             </div>
+                            <ScienceByYears/>
                         </Container>
                         :
                         null

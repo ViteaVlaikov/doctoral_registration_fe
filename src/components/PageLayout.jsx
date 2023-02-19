@@ -12,7 +12,6 @@ export const PageLayout = (props) => {
         <>
             <NavigationBar />
             {props.children}
-            <br />
             <AuthenticatedTemplate>
                 <footer>
                     <center>
