@@ -3,8 +3,8 @@ import {MsalAuthenticationTemplate} from '@azure/msal-react';
 import {InteractionType} from '@azure/msal-browser';
 import {loginRequest, protectedResources} from "../authConfig";
 import useFetchWithMsal from '../hooks/useFetchWithMsal';
-import {ScienceList} from "../components/science/ScienceList";
-import {DomainList} from "../components/science/DomainList";
+import {ScienceList} from "../components/science/list_view/ScienceList";
+import {DomainList} from "../components/science/list_view/DomainList";
 import {useParams} from "react-router-dom";
 
 const DomainContext = () => {

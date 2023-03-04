@@ -4,6 +4,7 @@ import { Nav, Navbar, Dropdown, DropdownButton } from 'react-bootstrap';
 
 import { loginRequest } from '../authConfig';
 import { AccountPicker } from './AccountPicker';
+import {Link} from "react-router-dom";
 
 export const NavigationBar = () => {
     const [showProfilePicker, setShowProfilePicker] = useState(false);
@@ -58,29 +59,23 @@ export const NavigationBar = () => {
     return (
         <>
             <Navbar bg="primary" variant="dark" className="navbarStyle">
-                <a className="navbar-brand" href="/">
+                <Link className="navbar-brand" to={'/'}>
                     USM
-                </a>
+                </Link>
                 <AuthenticatedTemplate>
-                    <Nav.Link className="navbarButton" href="/todolist">
-                        ToDoList
-                    </Nav.Link>
-                    <Nav.Link className="navbarButton" href="/specialities">
-                        Specialities
-                    </Nav.Link>
-                    <Nav.Link className="navbarButton" href="/supervisors">
-                        Supervisors
-                    </Nav.Link>
-                    <Nav.Link className="navbarButton" href="/science">
-                        Science
-                    </Nav.Link>
-                    <Nav.Link className="navbarButton" href="/students">
-                        Students
-                    </Nav.Link>
-                    <Nav.Link className="navbarButton" href="/domain">
-                        Domains
-                    </Nav.Link>
                     <div className="collapse navbar-collapse justify-content-end">
+                        <DropdownButton
+                            variant="warning"
+                            drop="start"
+                            title="Add"
+                        >
+                            <Dropdown.Item as="button" onClick={null}>
+                                Doctoral student
+                            </Dropdown.Item>
+                            <Dropdown.Item as="button" onClick={null}>
+                                Supervisor
+                            </Dropdown.Item>
+                        </DropdownButton>
                         <DropdownButton
                             variant="warning"
                             drop="start"
@@ -89,9 +84,6 @@ export const NavigationBar = () => {
                             <Dropdown.Item as="button" onClick={handleSwitchAccount}>
                                 Switch account
                             </Dropdown.Item>
-                            {/*<Dropdown.Item as="button" onClick={handleLogoutPopup}>*/}
-                            {/*    Sign out using Popup*/}
-                            {/*</Dropdown.Item>*/}
                             <Dropdown.Item as="button" onClick={handleLogoutRedirect}>
                                 Sign out using Redirect
                             </Dropdown.Item>

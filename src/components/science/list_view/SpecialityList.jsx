@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-import {SpecialityItem} from "./SpecialityItem";
+import {SpecialityItem} from "../item/SpecialityItem";
 
 export const SpecialityList = (props) => {
 

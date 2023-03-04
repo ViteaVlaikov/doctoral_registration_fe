@@ -58,18 +58,7 @@ footer {
     float: right;
 }
 
-.tableColumn {
-    word-break: break-all
-}
-
-.table {
-    max-height: 37rem;
-}
-
 .warningMessage {
     color: red;
 }
 
-.table{
-    border: black;
-}

@@ -3,7 +3,7 @@ import {Nav} from "react-bootstrap";
 import {SpecialityList} from "./SpecialityList";
 import {AuthenticatedTemplate} from "@azure/msal-react";
 import {Link} from "react-router-dom";
-import {StudentItem} from "../student/StudentItem";
+import {StudentItem} from "../../student/StudentItem";
 import ListGroup from "react-bootstrap/ListGroup";
 export const DomainList = (props) => {
 

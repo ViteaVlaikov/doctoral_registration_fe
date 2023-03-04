@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Nav} from "react-bootstrap";
+import {Nav, Table} from "react-bootstrap";
 import {SpecialityList} from "./SpecialityList";
 import {AuthenticatedTemplate} from "@azure/msal-react";
 import {Link} from "react-router-dom";
@@ -9,22 +9,23 @@ function parseToScience(array:string[]) {
     array.map(s=>{
         let science = {};
         let str = String(s)
-        str = str.split('(')[1].split(')')[0]
-        science.id = str[3]
-        science.name = str.substring(11)
+        let index = str.indexOf(',')
+        science.id = str.substring(0,index)
+        science.id = science.id.split("'")[1].split("'")
+        science.name = str.substring(index)
+        science.name = science.name.split("'")[1].split("'")
         sciences.push(science)
     });
     return sciences;
 }
-export const ScienceList = (props) => {
+export const ScienceByYearsList = (props) => {
     const [data] = useState(props.scienceData);
     const sciences = parseToScience(Object.keys(data));
     const arrays = Object.values(data);
-
     return (
         <div className="data-area-div">
             <AuthenticatedTemplate>
-                <table>
+                <Table>
                     <td>
                         <tr></tr>
                         <tr>{sciences[0].name}</tr>
@@ -201,7 +202,7 @@ export const ScienceList = (props) => {
                             </Link>
                         </tr>
                     </td>
-                </table>
+                </Table>
             </AuthenticatedTemplate>
         </div>
 

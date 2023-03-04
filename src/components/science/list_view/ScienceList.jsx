@@ -6,19 +6,19 @@ import {Link} from "react-router-dom";
 
 export const ScienceList = (props) => {
     const sciences = props.scienceData;
-    // console.log(sciences);
+    console.log(sciences);
     const scienceDomains = Array();
     sciences.forEach((science)=>{
         scienceDomains.push(science.scienceDomains);
     });
-    // console.log(scienceDomains);
+    console.log(scienceDomains);
     const scienceBranches = Array();
     scienceDomains.forEach((domain)=>{
         domain.forEach((el)=>{
             scienceBranches.push(el.scienceBranches);
         })
     });
-    // console.log(scienceBranches);
+    console.log(scienceBranches);
     const scienceProfiles = Array();
     scienceBranches.forEach((branch)=>{
         branch.forEach((el)=>{

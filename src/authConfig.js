@@ -81,23 +81,18 @@ export const protectedResources = {
         }
     },
     count_of_students: {
-        endpoint: "http://localhost:8080/api/sciences_by_years",
+        endpoint: "http://localhost:8080/api/sciences/schools/years",
         scopes: {
             read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
         }
     },
     domain: {
-        endpoint: "http://localhost:8080/api/domain",
+        endpoint: "http://localhost:8080/api/sciences/domains",
         scopes: {
             read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
         }
     },
-    domain_by_school: {
-        endpoint: "http://localhost:8080/api/domain",
-        scopes: {
-            read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
-        }
-    },
+
 }
 
 /**
@@ -112,6 +107,5 @@ export const loginRequest = {
         ...protectedResources.science.scopes.read,
         ...protectedResources.students.scopes.read,
         ...protectedResources.domain.scopes.read,
-        ...protectedResources.domain_by_school.scopes.read,
         ...protectedResources.count_of_students.scopes.read,]
 };

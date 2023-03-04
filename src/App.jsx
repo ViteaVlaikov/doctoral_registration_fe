@@ -1,9 +1,9 @@
-import { Routes, Route } from "react-router-dom";
-import { MsalProvider } from "@azure/msal-react";
+import {Route, Routes} from "react-router-dom";
+import {MsalProvider} from "@azure/msal-react";
 
-import { PageLayout } from "./components/PageLayout";
-import { Home } from "./pages/Home";
-import { TodoList } from "./pages/TodoList";
+import {PageLayout} from "./components/PageLayout";
+import {Home} from "./pages/Home";
+import {TodoList} from "./pages/TodoList";
 
 import "./styles/App.css";
 import {Speciality} from "./pages/Speciality";
@@ -11,16 +11,21 @@ import {Science} from "./pages/Science";
 import {Student} from "./pages/Student";
 import {Domain} from "./pages/Domain";
 import {DomainByScienceSchool} from "./pages/DomainByScienceSchool";
+import {SpecialityByYearsList} from "./components/science/list_view/SpecialityByYearsList";
+import {SpecialityByYears} from "./pages/SpecialityByYears";
+import {StudentByYearsList} from "./components/science/list_view/StudentByYearsList";
+import {StudentByYears} from "./pages/StudentByYears";
 
 const Pages = () => {
     return (
         <Routes>
             <Route path="/todolist" element={<TodoList />} />
             <Route path="/specialities" element={<Speciality />} />
-            <Route path="/specialities" element={<Speciality />} />
+            <Route path="/specialities/:profile_id/:year" element={<SpecialityByYears />} />
             <Route path="/supervisors" element={<TodoList />} />
             <Route path="/science" element={<Science />} />
-            <Route path="/students" element={<Student />} />
+            <Route path="/student/:firstName/:lastName" element={<Student />} />
+            <Route path="/students/:speciality_id/:year" element={<StudentByYears/>} />
             <Route path="/domain" element={<Domain />} />
             <Route path="/domain/:school_id/:year" element={<DomainByScienceSchool />} />
 

@@ -1,4 +1,4 @@
-import { AuthenticatedTemplate } from "@azure/msal-react";
+ import { AuthenticatedTemplate } from "@azure/msal-react";
 import { NavigationBar } from "./NavigationBar";
 
 export const PageLayout = (props) => {
@@ -12,6 +12,7 @@ export const PageLayout = (props) => {
         <>
             <NavigationBar />
             {props.children}
+            <br/>
             <AuthenticatedTemplate>
                 <footer>
                     <center>
