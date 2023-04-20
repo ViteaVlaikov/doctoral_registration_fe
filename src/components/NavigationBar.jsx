@@ -61,7 +61,7 @@ export const NavigationBar = () => {
                 <a className="navbar-brand" href="/">
                     USM
                 </a>
-                <AuthenticatedTemplate>
+                {/*<AuthenticatedTemplate>*/}
                     <Nav.Link className="navbarButton" href="/todolist">
                         ToDoList
                     </Nav.Link>
@@ -94,21 +94,21 @@ export const NavigationBar = () => {
                             </Dropdown.Item>
                         </DropdownButton>
                     </div>
-                </AuthenticatedTemplate>
-                <UnauthenticatedTemplate>
-                    <div className="collapse navbar-collapse justify-content-end">
-                        <DropdownButton variant="secondary" className="ml-auto" drop="start" title="Sign In">
-                            {/*<Dropdown.Item as="button" onClick={handleLoginPopup}>*/}
-                            {/*    Sign in using Popup*/}
-                            {/*</Dropdown.Item>*/}
-                            <Dropdown.Item as="button" onClick={handleLoginRedirect}>
-                                Sign in using Redirect
-                            </Dropdown.Item>
-                        </DropdownButton>
-                    </div>
-                </UnauthenticatedTemplate>
+                {/*</AuthenticatedTemplate>*/}
+                {/*<UnauthenticatedTemplate>*/}
+                {/*    <div className="collapse navbar-collapse justify-content-end">*/}
+                {/*        <DropdownButton variant="secondary" className="ml-auto" drop="start" title="Sign In">*/}
+                {/*            /!*<Dropdown.Item as="button" onClick={handleLoginPopup}>*!/*/}
+                {/*            /!*    Sign in using Popup*!/*/}
+                {/*            /!*</Dropdown.Item>*!/*/}
+                {/*            <Dropdown.Item as="button" onClick={handleLoginRedirect}>*/}
+                {/*                Sign in using Redirect*/}
+                {/*            </Dropdown.Item>*/}
+                {/*        </DropdownButton>*/}
+                {/*    </div>*/}
+                {/*</UnauthenticatedTemplate>*/}
             </Navbar>
-            <AccountPicker show={showProfilePicker} handleSwitchAccount={handleSwitchAccount} />
+            {/*<AccountPicker show={showProfilePicker} handleSwitchAccount={handleSwitchAccount} />*/}
         </>
     );
 };

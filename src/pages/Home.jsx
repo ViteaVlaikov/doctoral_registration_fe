@@ -11,23 +11,23 @@ import {useEffect, useState} from "react";
  * Optional Claims:  https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-optional-claims#v10-and-v20-optional-claims-set
  */
 export const Home = () => {
-    const {instance} = useMsal();
-    const activeAccount = instance.getActiveAccount();
+    // const {instance} = useMsal();
+    // const activeAccount = instance.getActiveAccount();
 
     return (
         <>
-            <AuthenticatedTemplate>
-                {
-                    activeAccount ?
+            {/*<AuthenticatedTemplate>*/}
+            {/*    {*/}
+            {/*        activeAccount ?*/}
                         <Container>
                             <div>
-                                Welcome {activeAccount.name}
+                                {/*Welcome {activeAccount.name}*/}
                             </div>
                         </Container>
-                        :
-                        null
-                }
-            </AuthenticatedTemplate>
+            {/*             :*/}
+            {/*             null*/}
+            {/*     }*/}
+            {/* </AuthenticatedTemplate>*/}
         </>
     );
 }

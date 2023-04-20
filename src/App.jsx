@@ -32,11 +32,11 @@ const Pages = () => {
  */
 const App = ({ instance }) => {
     return (
-        <MsalProvider instance={instance}>
+        // <MsalProvider instance={instance}>
             <PageLayout>
                 <Pages />
             </PageLayout>
-        </MsalProvider>
+        // </MsalProvider>
     );
 };
 
