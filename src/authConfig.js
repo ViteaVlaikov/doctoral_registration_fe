@@ -57,7 +57,7 @@ export const msalConfig = {
  */
 export const protectedResources = {
     specialities: {
-        endpoint: "http://localhost:8080/api/specialities",
+        endpoint: "http://localhost:8080/api/sciences/specialities",
         scopes: {
             read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
         },
@@ -92,6 +92,12 @@ export const protectedResources = {
             read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
         }
     },
+    country: {
+        endpoint: "http://localhost:8080/api/countries",
+        scopes: {
+            read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
+        }
+    },
 
 }
 
@@ -107,5 +113,7 @@ export const loginRequest = {
         ...protectedResources.science.scopes.read,
         ...protectedResources.students.scopes.read,
         ...protectedResources.domain.scopes.read,
-        ...protectedResources.count_of_students.scopes.read,]
+        ...protectedResources.count_of_students.scopes.read,
+        ...protectedResources.country.scopes.read,
+    ]
 };

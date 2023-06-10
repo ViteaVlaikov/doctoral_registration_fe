@@ -62,20 +62,14 @@ export const NavigationBar = () => {
                 <Link className="navbar-brand" to={'/'}>
                     USM
                 </Link>
+                <Link className="navbar-brand" to={'/students'}>
+                    Studenti
+                </Link>
+                <Link className="navbar-brand" to={'/'}>
+                    Condicatori
+                </Link>
                 <AuthenticatedTemplate>
                     <div className="collapse navbar-collapse justify-content-end">
-                        <DropdownButton
-                            variant="warning"
-                            drop="start"
-                            title="Add"
-                        >
-                            <Dropdown.Item as="button" onClick={null}>
-                                Doctoral student
-                            </Dropdown.Item>
-                            <Dropdown.Item as="button" onClick={null}>
-                                Supervisor
-                            </Dropdown.Item>
-                        </DropdownButton>
                         <DropdownButton
                             variant="warning"
                             drop="start"

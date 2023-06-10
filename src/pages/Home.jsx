@@ -24,7 +24,7 @@ export const Home = () => {
                             <div>
                                 Welcome {activeAccount.name}
                             </div>
-                            <ScienceByYears/>
+                            {/*<ScienceByYears/>*/}
                         </Container>
                         :
                         null

@@ -59,6 +59,7 @@ const useFetchWithMsal = (msalRequest) => {
                 setData(response);
 
                 setIsLoading(false);
+                console.log(response)
                 return response;
             } catch (e) {
                 setError(e);

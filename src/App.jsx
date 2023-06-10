@@ -15,11 +15,12 @@ import {SpecialityByYearsList} from "./components/science/list_view/SpecialityBy
 import {SpecialityByYears} from "./pages/SpecialityByYears";
 import {StudentByYearsList} from "./components/science/list_view/StudentByYearsList";
 import {StudentByYears} from "./pages/StudentByYears";
+import StudentFilterPage from "./main/react/doctoral_registration/pages/StudentFilterPage";
+import {MsalServer} from "./components/MsalServer";
 
 const Pages = () => {
     return (
         <Routes>
-            <Route path="/todolist" element={<TodoList />} />
             <Route path="/specialities" element={<Speciality />} />
             <Route path="/specialities/:profile_id/:year" element={<SpecialityByYears />} />
             <Route path="/supervisors" element={<TodoList />} />
@@ -30,6 +31,7 @@ const Pages = () => {
             <Route path="/domain/:school_id/:year" element={<DomainByScienceSchool />} />
 
             <Route path="/" element={<Home />} />
+            <Route path="/students" element={<StudentFilterPage/>} />
         </Routes>
     );
 };
