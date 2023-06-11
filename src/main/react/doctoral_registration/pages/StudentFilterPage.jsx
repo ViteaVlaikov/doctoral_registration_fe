@@ -13,6 +13,7 @@ import StudentModalView from "../components/view/student/StudentModalView";
 import {protectedResources} from "../../../../authConfig";
 import {useFetchWithMsalWrapper} from "../../../../hooks/useFetchWithMsalWrapper";
 import LoadingSpinner from "../components/spinner/LoadingSpinner";
+import ButtonLink from "../components/controlbox/ButtonLink";
 
 const StudentFilterPage = () => {
 
@@ -45,7 +46,7 @@ const StudentFilterPage = () => {
 
 
     const getAllStudents = () => {
-        Server.get(execute, Server.GET_ALL.STUDENTS, setStudents,).map(Student.fromServer).build();
+        Server.get(execute, Server.GET_ALL.STUDENTS, setStudents).map(Student.fromServer).build();
     }
 
     const getStudentsByFilter = (params) => {
@@ -60,14 +61,12 @@ const StudentFilterPage = () => {
     const EXCEL = 2;
 
     const prepareMapToRequest = (type) => {
-        console.log(requestMap);
         let request = "?";
         requestMap.forEach((values, key) => {
             let list = values.join(',');
             request += key + "=" + list + "&";
         })
         request = request.slice(0, -1);
-        console.log(request);
         if (request === '') {
             if (type === LIST) {
                 getAllStudents();
@@ -127,7 +126,7 @@ const StudentFilterPage = () => {
                 student={selectStudent}
             />
             <ControlBox>
-                <ButtonBox image={Images.ADD} onClick={console.log}/>
+                <ButtonLink image={Images.ADD} link={"/student/create"}/>
                 <ButtonUp/>
             </ControlBox>
         </div>

@@ -68,8 +68,8 @@ export const protectedResources = {
             read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
         }
     },
-    science: {
-        endpoint: "http://localhost:8080/api/science",
+    schools: {
+        endpoint: "http://localhost:8080/api/schools",
         scopes: {
             read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
         }
@@ -110,7 +110,7 @@ export const protectedResources = {
 export const loginRequest = {
     scopes: [...protectedResources.specialities.scopes.read,
         ...protectedResources.supervisors.scopes.read,
-        ...protectedResources.science.scopes.read,
+        ...protectedResources.schools.scopes.read,
         ...protectedResources.students.scopes.read,
         ...protectedResources.domain.scopes.read,
         ...protectedResources.count_of_students.scopes.read,

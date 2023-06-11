@@ -45,6 +45,14 @@ class Server {
         return new RequestBuilder(execute, path, setEntities);
     }
 
+    static async post(execute, path, data){
+        return execute("POST", path, data)
+    }
+
+    static async update(execute, path, data){
+        return execute("PATCH", path, data)
+    }
+
     static async updateSupervisor(s) {
         return {
             id: s.id,

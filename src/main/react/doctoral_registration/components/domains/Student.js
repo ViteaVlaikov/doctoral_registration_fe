@@ -1,4 +1,5 @@
 import DateParser from "../../utils/DateParser";
+import Country from "./Country";
 
 class Order {
     id;
@@ -102,8 +103,14 @@ class Student {
 
     steeringCommittee = [];
 
+    constructor() {
+        this.citizenship = Country.fromObject({id: 1})
+
+    }
+
     static fromServer(object) {
         const student = Student.fromObject(object);
+
         const dateParser =
             new DateParser(DateParser.FORMAT.YYYY_MM_DD, DateParser.DELIMITER.DASH);
         student.orders = student.orders.map(order => {

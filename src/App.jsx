@@ -12,7 +12,8 @@ const Pages = () => {
     return (
         <Routes>
             <Route path="/" element={<StudentFilterPage/>}/>
-            <Route path="/create_student" element={<StudentFormPage/>}/>
+            <Route path="/student/create" element={<StudentFormPage/>}/>
+            <Route path="/student/edit/:id" element={<StudentFormPage/>}/>
             <Route path="/supervisors" element={<SupervisorPage/>}/>
         </Routes>
     );

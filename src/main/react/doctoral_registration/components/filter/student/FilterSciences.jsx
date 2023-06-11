@@ -40,7 +40,7 @@ const FilterSciences = (
                 setSchools(schools.map(school =>
                     new Item(school.id, school.name, null))));
         },
-        [getSchools])
+        [])
 
     useEffect(() => lazyLoad(), [selectedPanels])
 

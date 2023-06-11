@@ -1,10 +1,11 @@
 import React from 'react';
-import {Card, Container, Spinner, Table} from "react-bootstrap";
+import {Card, Container, Image, Spinner, Table} from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import DateParser from "../../../utils/DateParser";
 import Student from "../../domains/Student";
+import {Link} from "react-router-dom";
 
 const StudentView = ({student}) => {
 
@@ -286,7 +287,11 @@ const StudentView = ({student}) => {
                 </Row>
                 <Row className={"mb-3"}>
                     <Col>
-                        <Button variant="primary">Redactarea datelor</Button>
+                        <Link to={"/student/edit/" + student.id}>
+                            <Button variant={"primary"}>
+                                Redactarea datelor
+                            </Button>
+                        </Link>
                     </Col>
                 </Row>
             </Container>

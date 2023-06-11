@@ -49,7 +49,7 @@ const FilterProperties = ({getCountries, onSelectItems}) => {
                 countriesList.map(country =>
                     new Item(country.id, country.country, null)));
         })
-    }, [getCountries])
+    }, [])
 
     return (
         <>

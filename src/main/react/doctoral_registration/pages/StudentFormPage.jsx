@@ -4,12 +4,20 @@ import Server from "../server/Server";
 import Country from "../components/domains/Country";
 import School from "../components/domains/School";
 import OrderType from "../components/domains/OrderType";
-import Student from "../components/domains/Student";
 import ControlBox from "../components/controlbox/ControlBox";
 import ButtonUp from "../components/controlbox/ButtonUp";
 import {ItemsParser} from "../components/scrolllist/ScrollList";
+import {useFetchWithMsalWrapper} from "../../../../hooks/useFetchWithMsalWrapper";
+import {protectedResources} from "../../../../authConfig";
+import LoadingSpinner from "../components/spinner/LoadingSpinner";
+import Student from "../components/domains/Student";
+import {useParams} from "react-router-dom";
 
 const StudentFormPage = () => {
+
+    const {result, execute} = useFetchWithMsalWrapper({
+        scopes: protectedResources.country.scopes.read,
+    })
 
     const [countries, setCountries] = useState(null);
 
@@ -23,43 +31,60 @@ const StudentFormPage = () => {
 
     const [student, setStudent] = useState(null);
 
-    // const [visible, setVisible] = useState(false);
+    const id = useParams().id;
 
     useEffect(() => {
-        Server.get(Server.GET_BY_ID.STUDENT, setStudent).params(22).map(Student.fromServer).build();
-    }, [])
+        if (result) {
+            if (id) {
+                getStudentById(id);
+            }
+        }
+    }, [result])
+
+    const getStudentById = (id) => {
+        Server.get(execute, Server.GET_BY_ID.STUDENT, setStudent).params(id).map(Student.fromServer).build();
+    }
 
     useEffect(() => {
-        Server.get(Server.GET_ALL.COUNTRIES, setCountries).map(Country.fromObject).build();
-        Server.get(Server.GET_ALL.SCHOOLS, setSchools).map(School.fromObject).build();
-        Server.get(Server.GET_ALL.ORDER_TYPES, setOrdersTypes).map(OrderType.fromObject).build();
-    }, [])
+        if (result) {
+            Server.get(execute, Server.GET_ALL.COUNTRIES, setCountries).map(Country.fromObject).build();
+            Server.get(execute, Server.GET_ALL.SCHOOLS, setSchools).map(School.fromObject).build();
+            Server.get(execute, Server.GET_ALL.ORDER_TYPES, setOrdersTypes).map(OrderType.fromObject).build();
+        }
+    }, [result])
 
+
+    async function saveStudent(student) {
+        if (id)
+            Server.update(execute, Server.GET_ALL.STUDENTS + "/" + id, student).then()
+        else
+            Server.post(execute, Server.GET_ALL.STUDENTS, student).then()
+    }
 
     async function getSpecialitiesBySchoolId(id) {
-        Server.get(Server.GET_BY_ID.SPECIALITIES_BY_SCHOOL, setSpecialities)
+        Server.get(execute, Server.GET_BY_ID.SPECIALITIES_BY_SCHOOL, setSpecialities)
             .params(id).map(item => ItemsParser.toItem(ItemsParser.ENTITY.SPECIALITY, item)).build();
     }
 
     async function getSupervisorsBySchoolId(id) {
-        Server.get(Server.GET_BY_ID.SUPERVISORS_BY_SCHOOL, setSupervisors)
+        Server.get(execute, Server.GET_BY_ID.SUPERVISORS_BY_SCHOOL, setSupervisors)
             .params(id).map(item => ItemsParser.toItem(ItemsParser.ENTITY.SUPERVISOR, item)).build();
     }
 
-    // const hideViewWindow = () => {
-    //     setVisible(false);
-    // }
-    // const openViewWindow = () => {
-    //     if (student) {
-    //         setVisible(true);
-    //     }
-    // }
+    if (id && !student) {
+        return <LoadingSpinner/>
+    }
+
+    if (!result) {
+        return <LoadingSpinner/>;
+    }
 
     return (
         <>
             <StudentForm
                 student={student}
                 setStudent={setStudent}
+                saveStudent={saveStudent}
                 countries={countries}
                 orderTypes={orderTypes}
                 schools={schools}
@@ -68,15 +93,7 @@ const StudentFormPage = () => {
                 supervisors={supervisors}
                 getSupervisors={getSupervisorsBySchoolId}
             />
-            {/*<StudentModalView*/}
-            {/*    isVisible={visible}*/}
-            {/*    onHide={hideViewWindow}*/}
-            {/*    student={student}*/}
-            {/*/>*/}
             <ControlBox>
-                {/*<ButtonBox*/}
-                {/*    image={Images.VIEW}*/}
-                {/*    onClick={openViewWindow}/>*/}
                 <ButtonUp/>
             </ControlBox>
         </>
