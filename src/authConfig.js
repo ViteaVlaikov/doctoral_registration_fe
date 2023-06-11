@@ -98,6 +98,12 @@ export const protectedResources = {
             read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
         }
     },
+    excel: {
+        endpoint: "http://localhost:8080/api/excel/student",
+        scopes: {
+            read: ["api://3290a8de-07b9-47b3-b0f3-1cab68ee6e8d/Todolist.Read"],
+        }
+    },
 
 }
 

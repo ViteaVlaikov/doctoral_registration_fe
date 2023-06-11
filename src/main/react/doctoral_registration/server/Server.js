@@ -13,6 +13,7 @@ class Server {
         SUPERVISORS: this.SERVER_URL + '/supervisors',
         ORDER_TYPES: this.SERVER_URL + '/orders/types',
         STUDENTS: this.SERVER_URL + '/students',
+        EXCEL: this.SERVER_URL + '/excel/student'
     }
 
     static GET_BY_ID = {

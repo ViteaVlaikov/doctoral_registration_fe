@@ -6,7 +6,6 @@ import Server from "../server/Server";
 import Student from "../components/domains/Student";
 import ControlBox from "../components/controlbox/ControlBox";
 import ButtonUp from "../components/controlbox/ButtonUp";
-import ButtonBox from "../components/controlbox/ButtonBox";
 import Images from "../../../resources/settings/Images";
 import StudentList from "../components/list/student/StudentList";
 import StudentModalView from "../components/view/student/StudentModalView";
@@ -49,6 +48,19 @@ const StudentFilterPage = () => {
         Server.get(execute, Server.GET_ALL.STUDENTS, setStudents).map(Student.fromServer).build();
     }
 
+    const getExcelReport = (filter = '') => {
+        execute("GET", Server.GET_ALL.EXCEL + filter, null, true).then(blob => {
+                const url = window.URL.createObjectURL(new Blob([blob]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'report.xlsx'); // Установка имени файла
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        )
+    }
+
     const getStudentsByFilter = (params) => {
         Server.get(execute, Server.FILTER.STUDENTS, setStudents)
             .params(params).map(Student.fromServer).build();
@@ -72,11 +84,14 @@ const StudentFilterPage = () => {
                 getAllStudents();
             }
             if (type === EXCEL) {
-
+                getExcelReport();
             }
         } else {
             if (type === LIST) {
                 getStudentsByFilter(request);
+            }
+            if (type === EXCEL) {
+                getExcelReport(request);
             }
         }
     }

@@ -17,9 +17,10 @@ const useFetchWithMsal = (result, msalError) => {
      * @param {string} method: GET, POST, PUT, DELETE
      * @param {String} endpoint: The endpoint to call
      * @param {Object} data: The data to send to the endpoint, if any
+     * @param isBlob: Return blob format or json
      * @returns JSON response
      */
-    const execute = async (method, endpoint, data = null) => {
+    const execute = async (method, endpoint, data = null, isBlob = false) => {
 
         if (result) {
             try {
@@ -39,8 +40,10 @@ const useFetchWithMsal = (result, msalError) => {
                 };
 
                 setIsLoading(true);
-
-                response = await (await fetch(endpoint, options)).json();
+                if(isBlob)
+                    response = await (await fetch(endpoint, options)).blob();
+                else
+                    response = await (await fetch(endpoint, options)).json();
                 setData(response);
 
                 setIsLoading(false);
