@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import FilterAccordion from "../components/filter/student/FilterAccordion";
-import {ButtonGroup, ButtonToolbar, Table} from "react-bootstrap";
+import {ButtonGroup, ButtonToolbar} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Server from "../server/Server";
 import Student from "../components/domains/Student";
@@ -10,19 +10,15 @@ import ButtonBox from "../components/controlbox/ButtonBox";
 import Images from "../../../resources/settings/Images";
 import StudentList from "../components/list/student/StudentList";
 import StudentModalView from "../components/view/student/StudentModalView";
-import useFetchWithMsal from "../../../../hooks/useFetchWithMsal";
 import {protectedResources} from "../../../../authConfig";
-import CustomServer from "../server/CustomServer";
+import {useFetchWithMsalWrapper} from "../../../../hooks/useFetchWithMsalWrapper";
+import LoadingSpinner from "../components/spinner/LoadingSpinner";
 
 const StudentFilterPage = () => {
 
-    const {getAll, getById} = CustomServer();
-
-    const {error, execute} = useFetchWithMsal({
+    const {result, execute} = useFetchWithMsalWrapper({
         scopes: protectedResources.country.scopes.read,
-    });
-
-    const [country, setCountries] = useState([]);
+    })
 
     const [students, setStudents] = useState([]);
 
@@ -31,34 +27,29 @@ const StudentFilterPage = () => {
     const [selectStudent, setSelectStudent] = useState(null);
 
     async function getSchools() {
-        // return Server.request(Server.GET_ALL.SCHOOLS);
-        return getAll(Server.GET_ALL.SCHOOLS);
+        return Server.request(execute, Server.GET_ALL.SCHOOLS);
     }
 
     async function getDomains(schoolId) {
-        // return Server.request(Server.GET_BY_ID.DOMAINS_BY_SCHOOL + schoolId);
-        return getAll(Server.GET_BY_ID.DOMAINS_BY_SCHOOL + schoolId);
+        return Server.request(execute, Server.GET_BY_ID.DOMAINS_BY_SCHOOL + schoolId);
     }
 
     async function getCountries() {
-        // return Server.request(Server.GET_ALL.COUNTRIES, execute).then(
-        //     response => {
-        //         setCountries(response);
-        // });
-        return getAll(Server.GET_ALL.COUNTRIES);
+        return Server.request(execute, Server.GET_ALL.COUNTRIES);
     }
 
 
     async function getSupervisorsBySchoolId(id) {
-        return Server.request(Server.GET_BY_ID.SUPERVISORS_BY_SCHOOL + id);
+        return Server.request(execute, Server.GET_BY_ID.SUPERVISORS_BY_SCHOOL + id);
     }
 
+
     const getAllStudents = () => {
-        Server.get(Server.GET_ALL.STUDENTS, setStudents,).map(Student.fromServer).build();
+        Server.get(execute, Server.GET_ALL.STUDENTS, setStudents,).map(Student.fromServer).build();
     }
 
     const getStudentsByFilter = (params) => {
-        Server.get(Server.FILTER.STUDENTS, setStudents)
+        Server.get(execute, Server.FILTER.STUDENTS, setStudents)
             .params(params).map(Student.fromServer).build();
     }
 
@@ -99,6 +90,10 @@ const StudentFilterPage = () => {
         setVisible(false);
     }
 
+    if (!result) {
+        return <LoadingSpinner/>
+    }
+
     return (
         <div>
             <FilterAccordion
@@ -118,9 +113,6 @@ const StudentFilterPage = () => {
                         onClick={() => prepareMapToRequest(EXCEL)}>Excel</Button>
                 </ButtonGroup>
                 <div style={{width: "1em"}}></div>
-                {/*<ButtonGroup className="me-2">*/}
-                {/*    <Button variant={"danger"}>Sterge filter</Button>*/}
-                {/*</ButtonGroup>*/}
             </ButtonToolbar>
             <br/>
             {students.length ?

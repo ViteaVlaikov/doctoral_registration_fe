@@ -1,6 +1,3 @@
-import axios from "axios";
-import {protectedResources} from "../../../../authConfig";
-
 class Server {
 
 
@@ -40,15 +37,12 @@ class Server {
     }
 
 
-    static async request(path, execute) {
-        const response = execute("GET",protectedResources.country.endpoint)
-        console.log(response.data)
-        // const response = await axios.get(path)
-        return response.data;
+    static async request(execute, path) {
+        return execute("GET", path)
     }
 
-    static get(path, setEntities) {
-        return new RequestBuilder(path, setEntities);
+    static get(execute, path, setEntities) {
+        return new RequestBuilder(execute, path, setEntities);
     }
 
     static async updateSupervisor(s) {
@@ -76,7 +70,8 @@ class Server {
 
 class RequestBuilder {
 
-    constructor(path, setEntities) {
+    constructor(execute, path, setEntities) {
+        this._execute = execute;
         this._path = path;
         this._strategy = Server.STRATEGY.WRITE;
         this._position = Server.POSITION.END;
@@ -110,7 +105,7 @@ class RequestBuilder {
         const usePosition = (items, list) =>
             this._position === Server.POSITION.END ? [...items, ...useMap(list)] : [...list, useMap(list)];
 
-        Server.request(this._path).then(list => {
+        Server.request(this._execute, this._path).then(list => {
 
             switch (this._strategy) {
                 case Server.STRATEGY.WRITE: {

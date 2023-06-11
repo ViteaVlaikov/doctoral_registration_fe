@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from '@azure/msal-react';
 import { Nav, Navbar, Dropdown, DropdownButton } from 'react-bootstrap';
 
-import { loginRequest } from '../authConfig';
-import { AccountPicker } from './AccountPicker';
+import { loginRequest } from '../../../../../authConfig';
 import {Link} from "react-router-dom";
+import {AccountPicker} from "../../../../../components/AccountPicker";
 
 export const NavigationBar = () => {
     const [showProfilePicker, setShowProfilePicker] = useState(false);
@@ -21,31 +21,12 @@ export const NavigationBar = () => {
             .catch((error) => console.log(error));
     };
 
-    // const handleLoginPopup = () => {
-    //     /**
-    //      * When using popup and silent APIs, we recommend setting the redirectUri to a blank page or a page
-    //      * that does not implement MSAL. Keep in mind that all redirect routes must be registered with the application
-    //      * For more information, please follow this link: https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/login-user.md#redirecturi-considerations
-    //      */
-    //
-    //     instance.loginPopup({
-    //         ...loginRequest,
-    //         redirectUri: '/redirect.html'
-    //     }).catch((error) => console.log(error));
-    // };
 
     const handleLogoutRedirect = () => {
         instance.logoutRedirect({
             account: instance.getActiveAccount(),
         });
     };
-
-    // const handleLogoutPopup = () => {
-    //     instance.logoutPopup({
-    //         mainWindowRedirectUri: '/', // redirects the top level app after logout
-    //         account: instance.getActiveAccount(),
-    //     });
-    // };
 
     const handleSwitchAccount = () => {
         setShowProfilePicker(!showProfilePicker);
@@ -59,14 +40,14 @@ export const NavigationBar = () => {
     return (
         <>
             <Navbar bg="primary" variant="dark" className="navbarStyle">
-                <Link className="navbar-brand" to={'/'}>
+                <Link className="navbar-brand" hrefLang={'https://usm.md/?lang=ru'}>
                     USM
                 </Link>
-                <Link className="navbar-brand" to={'/students'}>
+                <Link className="navbar-brand" to={'/'}>
                     Studenti
                 </Link>
-                <Link className="navbar-brand" to={'/'}>
-                    Condicatori
+                <Link className="navbar-brand" to={'/supervisors'}>
+                    Profesori
                 </Link>
                 <AuthenticatedTemplate>
                     <div className="collapse navbar-collapse justify-content-end">
@@ -87,9 +68,6 @@ export const NavigationBar = () => {
                 <UnauthenticatedTemplate>
                     <div className="collapse navbar-collapse justify-content-end">
                         <DropdownButton variant="secondary" className="ml-auto" drop="start" title="Sign In">
-                            {/*<Dropdown.Item as="button" onClick={handleLoginPopup}>*/}
-                            {/*    Sign in using Popup*/}
-                            {/*</Dropdown.Item>*/}
                             <Dropdown.Item as="button" onClick={handleLoginRedirect}>
                                 Sign in using Redirect
                             </Dropdown.Item>

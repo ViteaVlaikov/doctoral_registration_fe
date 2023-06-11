@@ -30,7 +30,6 @@ const DateSelect = ({
 
     const years = Array.from(new Array(maxAge - minAge), (val, index) => maxAge - index);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     const months = [
         {id: 0, name: 'Ianuarie', size: 31},
         {id: 1, name: 'Februarie', size: 29},

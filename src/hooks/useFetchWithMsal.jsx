@@ -1,49 +1,35 @@
-import {
-    useState,
-    useCallback,
-} from 'react';
+import {useCallback, useState,} from 'react';
 
-import { InteractionType, PopupRequest } from '@azure/msal-browser';
-import { useMsal, useMsalAuthentication } from "@azure/msal-react";
+import {InteractionType, PopupRequest} from '@azure/msal-browser';
+import {useMsal, useMsalAuthentication} from "@azure/msal-react";
 
 /**
  * Custom hook to call a web API using bearer token obtained from MSAL
- * @param {PopupRequest} msalRequest 
- * @returns 
+ * @param {PopupRequest} msalRequest
+ * @returns
  */
-const useFetchWithMsal = (msalRequest) => {
-    const { instance } = useMsal();
+const useFetchWithMsal = (result) => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
-
-    const { result, error: msalError } = useMsalAuthentication(InteractionType.Popup, {
-        ...msalRequest,
-        account: instance.getActiveAccount(),
-        redirectUri: '/redirect.html'
-    });
 
     /**
      * Execute a fetch request with the given options
      * @param {string} method: GET, POST, PUT, DELETE
      * @param {String} endpoint: The endpoint to call
-     * @param {Object} data: The data to send to the endpoint, if any 
+     * @param {Object} data: The data to send to the endpoint, if any
      * @returns JSON response
      */
     const execute = async (method, endpoint, data = null) => {
-        if (msalError) {
-            setError(msalError);
-            return;
-        }
 
         if (result) {
             try {
                 let response = null;
 
                 const headers = new Headers();
-                const bearer = `Bearer ${result.accessToken}`;            
+                const bearer = `Bearer ${result.accessToken}`;
                 headers.append("Authorization", bearer);
-                headers.append("Access-Control-Allow-Origin",'*');
+                headers.append("Access-Control-Allow-Origin", '*');
 
                 if (data) headers.append('Content-Type', 'application/json');
 
@@ -59,7 +45,6 @@ const useFetchWithMsal = (msalRequest) => {
                 setData(response);
 
                 setIsLoading(false);
-                console.log(response)
                 return response;
             } catch (e) {
                 setError(e);
@@ -73,7 +58,7 @@ const useFetchWithMsal = (msalRequest) => {
         isLoading,
         error,
         data,
-        execute: useCallback(execute, [result, msalError]), // to avoid infinite calls when inside a `useEffect`
+        execute: useCallback(execute, [result]), // to avoid infinite calls when inside a `useEffect`
     };
 };
 
